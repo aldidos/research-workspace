@@ -8,9 +8,6 @@ import matplotlib.pyplot as plt
 
 if __name__ == '__main__' : 
     output_dir = 'E:/research_subagent/data/analysis'
-
-    ['subagent_category', 'ht_category', '_id']
-
     undefined_category = subagentCategoriesDao.get_undefined_id()
 
     df = pd.DataFrame( subagentDatasetDao.get_dataset_for_RQ3(undefined_category) )    
@@ -47,4 +44,4 @@ if __name__ == '__main__' :
     plt.ylabel('Proportion')
     plt.tight_layout()    
     plt.legend(ncol = 2, loc = 'upper left', fontsize = 12, bbox_to_anchor = (0.0, 1.0))
-    plt.savefig(f'{output_dir}/RQ3_heading_category_prop.png')    
+    plt.savefig(f'{output_dir}/subagent_instruction_category_prop_RQ3.png')    

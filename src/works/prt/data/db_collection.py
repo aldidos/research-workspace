@@ -1,0 +1,38 @@
+from src.database.db_conn import mongo_client
+
+db_study_prt_structure = mongo_client.study_prt_structure
+
+col_pull_request_templates = db_study_prt_structure.pull_request_templates
+col_prt_text_info = db_study_prt_structure.prt_text_info
+col_pull_request_template_features = db_study_prt_structure.pull_request_template_features
+col_contributors = db_study_prt_structure.contributors
+col_repositories = db_study_prt_structure.repositories
+col_pull_requests = db_study_prt_structure.pull_requests
+col_pull_requests_exp = db_study_prt_structure.pull_requests_exp
+col_pull_requests_exp_01 = db_study_prt_structure.pull_requests_exp_01
+col_pr_review_comments = db_study_prt_structure.pr_review_comments
+col_commits = db_study_prt_structure.commits
+col_commit_data = db_study_prt_structure.commit_data
+col_issue_events = db_study_prt_structure.issue_events
+col_prt_tag_counts = db_study_prt_structure.prt_tag_counts
+col_prt_entropy = db_study_prt_structure.prt_entropy
+col_analysis_dataset_entropy = db_study_prt_structure.analysis_dataset_entropy
+col_analysis_dataset_checklist = db_study_prt_structure.analysis_dataset_checklist
+col_prt_commit_data = db_study_prt_structure.prt_commit_data
+
+col_prt_checklist = db_study_prt_structure.prt_checklist  ####
+
+col_issue_comments = db_study_prt_structure.issue_comments
+col_clustering_results_prt = db_study_prt_structure.clustering_results_prt
+col_clusters_prt = db_study_prt_structure.clusters_prt
+col_pull_request_detail = db_study_prt_structure.pull_request_detail
+col_repo_contents = db_study_prt_structure.repo_contents
+col_contributor_last_urls = db_study_prt_structure.contributor_last_urls ####
+col_pull_request_last_urls = db_study_prt_structure.pull_request_last_urls ####
+col_readmes = db_study_prt_structure.readmes
+col_exp_dataset = db_study_prt_structure.exp_dataset
+col_contributor_last = db_study_prt_structure.contributor_last
+col_contributing_files = db_study_prt_structure.contributing_files
+col_contributing_file_features = db_study_prt_structure.contributing_file_features
+
+col_exp_prt_set_fe = db_study_prt_structure.exp_prt_set_fe

@@ -28,6 +28,9 @@ col_subagent_heading_title_counts = db_subagent.subagent_heading_title_counts
 col_subagent_heading_title_labeling_results = db_subagent.subagent_heading_title_labeling_results
 col_subagent_labeling_reulsts = db_subagent.subagent_labeling_results
 
+col_exp_repos = db_subagent.exp_repos
+col_exp_repositories = db_subagent.exp_repositories
+
 data_collections = [
     ('col_repositories', col_repositories), 
     ('col_repos', col_repos), 
@@ -48,5 +51,7 @@ data_collections = [
     ('col_subagent_head_title_labels', col_subagent_head_title_labels),
     ('col_subagent_heading_title_counts', col_subagent_heading_title_counts),
     ('col_subagent_heading_title_labeling_results', col_subagent_heading_title_labeling_results),
-    ('col_subagent_labeling_reulsts', col_subagent_labeling_reulsts)
+    ('col_subagent_labeling_reulsts', col_subagent_labeling_reulsts), 
+    ('col_exp_repos', col_exp_repos),
+    ('col_exp_repositories', col_exp_repositories)
 ]

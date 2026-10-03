@@ -3,7 +3,7 @@ from src.works.subagent.data.collections import col_subagent_file_text_fe, col_s
 
 class SubagentDatasetDao :     
 
-    def make_subagent_category_lookup(self, undefined_category) : 
+    def lookup_stage_with_subagent_category(self, undefined_category) : 
         return lookup('subagent_file_with_category', '_id', '_id', 'category_info', [
                 match({ 'category' : {'$not' : {'$eq' : undefined_category } } }), ####
                 lookup('subagent_categories', 'category', 'id', 'suba_category_info'), 
@@ -12,7 +12,7 @@ class SubagentDatasetDao :
 
     def get_dataset_for_RQ2(self, undefined_category) : 
         stages = [
-            self.make_subagent_category_lookup(undefined_category), 
+            self.lookup_stage_with_subagent_category(undefined_category), 
             unwind('$category_info'), 
             lookup('subagent_fre_scores', '_id', '_id', 'fre_score' ),             
             unwind('$fre_score'), 
@@ -34,7 +34,7 @@ class SubagentDatasetDao :
 
     def get_dataset_for_RQ3(self, undefined_category) : 
         stages = [
-            self.make_subagent_category_lookup(undefined_category), 
+            self.lookup_stage_with_subagent_category(undefined_category), 
             unwind('$category_info'), 
             lookup('subagent_file_with_heading_category', '_id', '_id', 'heading_title_category', [ 
                 project( {'label_category' : { '$setUnion' : [ '$label_category', [] ]} }),                 
@@ -45,7 +45,7 @@ class SubagentDatasetDao :
             unwind('$heading_title_category'),
             project({ 
                 'subagent_category' : '$category_info.suba_category_info.name', 
-                'ht_category' : '$heading_title_category.ht_label_info.name'
+                'ht_category' : '$heading_title_category.ht_label_info.name'                
             })
         ]
 

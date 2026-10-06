@@ -10,6 +10,20 @@ class SubagentDatasetDao :
                 unwind('$suba_category_info')
             ] )
 
+    def get_dataset_for_RQ1(self, undefined_category) : 
+        stages = [
+            self.lookup_stage_with_subagent_category(undefined_category), 
+            unwind('$category_info'), 
+            lookup('subagent_file_text', '_id', '_id', 'subagent_file_text' ), 
+            unwind('$subagent_file_text'), 
+            project({                
+                'repo_id' : '$subagent_file_text.repo_id',                
+                'category' : '$category_info.suba_category_info.name' 
+            })
+        ]
+    
+        return col_subagent_file_text_fe.aggregate(stages)
+
     def get_dataset_for_RQ2(self, undefined_category) : 
         stages = [
             self.lookup_stage_with_subagent_category(undefined_category), 

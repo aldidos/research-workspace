@@ -4,9 +4,13 @@ import pandas as pd
 import math
 from src.works.subagent.data.dao.subagent_dataset_dao import subagentDatasetDao
 from src.works.subagent.data.dao.subagent_category_dao import subagentCategoriesDao
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 if __name__ == '__main__' : 
-    file_dir = 'E:/research_subagent/data/analysis'
+    working_base_dir = os.getenv('SUBAGENT_WORK_BASE_DIR')
+    file_dir = f'{working_base_dir}/data/analysis'
     file_name = 'subagent_dataset_RQ2'
     undefined_category = subagentCategoriesDao.get_undefined_id()
 

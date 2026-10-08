@@ -5,9 +5,13 @@ from src.works.subagent.data.dao.subagent_dataset_dao import subagentDatasetDao
 from src.works.subagent.data.dao.subagent_category_dao import subagentCategoriesDao
 import seaborn as sns
 import matplotlib.pyplot as plt
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 if __name__ == '__main__' : 
-    output_dir = 'E:/research_subagent/data/analysis'
+    working_base_dir = os.getenv('SUBAGENT_WORK_BASE_DIR')
+    output_dir = f'{working_base_dir}/data/analysis'
     undefined_category = subagentCategoriesDao.get_undefined_id()
 
     df = pd.DataFrame( subagentDatasetDao.get_dataset_for_RQ3(undefined_category) )     

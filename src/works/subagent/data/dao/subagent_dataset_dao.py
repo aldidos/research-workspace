@@ -1,7 +1,30 @@
 from src.database.agg_stages import lookup, match, project, unwind, group, sort
-from src.works.subagent.data.collections import col_subagent_file_text_fe, col_subagent_file_with_category
+from src.works.subagent.data.collections import col_subagent_file_text_fe, col_subagent_file_with_category, col_exp_repositories, col_subagent_heading_title_labeling_results
 
 class SubagentDatasetDao :     
+
+    def get_exp_repo_dataset(self) : 
+        stages = [
+            project({
+                'repo_mane' : 1, 
+                'mainLanguage' : 1, 
+                'stargazers' : 1, 
+                'contributors' : 1 
+            })
+        ]
+
+        return col_exp_repositories.aggregate(stages)
+
+    def get_valid_heading_titles_dataset(self) : 
+        stages = [
+            match({'label' : {'$gte' : 1}}), 
+            project({
+                'head_title' : 1, 
+                'n_count' : 1
+            })
+        ]
+        
+        return col_subagent_heading_title_labeling_results.aggregate(stages)
 
     def lookup_stage_with_subagent_category(self, undefined_category) : 
         return lookup('subagent_file_with_category', '_id', '_id', 'category_info', [

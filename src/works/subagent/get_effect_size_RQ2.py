@@ -5,7 +5,19 @@ import dotenv
 import os
 dotenv.load_dotenv()
 
-def pvalue_check(pvalue) : 
+def transform_res(res) : 
+    if res == 'negligible' : 
+        return 'N'
+    if res == 'small' : 
+        return 'S'
+    if res == 'medium' : 
+        return 'M'
+    
+    return 'L'
+
+def pvalue_check(row) : 
+    pvalue = row['p-value']
+    res = row['res']
     tp = ''
     if pvalue < 0.001 : 
         tp = '***'    
@@ -14,7 +26,7 @@ def pvalue_check(pvalue) :
     elif pvalue < 0.05 : 
         tp = '*'
     
-    str_format = "{:.3f}{}".format(pvalue, tp)    
+    str_format = "{}{}".format(res, tp)    
     return str_format
 
 if __name__ == '__main__' : 
@@ -22,7 +34,8 @@ if __name__ == '__main__' :
     dir_path = f'{working_dir}/data/analysis/'
     df = pd.read_csv(f'{dir_path}/study_subagent.temp_mwu_result.csv')
 
-    df['str_effect_size'] = df['p-value'].apply(pvalue_check)
+    df['res'] = df['res'].transform(transform_res)
+    df['str_effect_size'] = df.apply(pvalue_check, axis = 1)
 
     vars = ['n_words', 'fre_score', 'h2', 'h3']
     for var in vars :     

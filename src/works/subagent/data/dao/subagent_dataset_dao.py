@@ -15,9 +15,8 @@ class SubagentDatasetDao :
 
         return col_exp_repositories.aggregate(stages)
 
-    def get_valid_heading_titles_dataset(self) : 
-        stages = [
-            match({'label' : {'$gte' : 1}}), 
+    def get_heading_title_labeling_results(self) : 
+        stages = [            
             project({
                 'head_title' : 1, 
                 'n_count' : 1

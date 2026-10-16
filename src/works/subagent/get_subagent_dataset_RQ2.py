@@ -37,4 +37,4 @@ if __name__ == '__main__' :
 
     for mwu_var in mwu_vars : 
         sub_df = df[df['var'] == mwu_var]    
-        sub_df.pivot(index = index, columns = column, values = value).to_json(f'{file_dir}/mwu_result_{mwu_var}.json')    
+        sub_df.pivot(index = index, columns = column, values = value).to_json(f'{file_dir}/mwu_result_{mwu_var}.json') 

@@ -12,7 +12,7 @@ load_dotenv()
 
 if __name__ == '__main__' : 
     working_base_dir = os.getenv('SUBAGENT_WORK_BASE_DIR')
-    file_dir = f'{working_base_dir}/data/analysis'
+    file_dir = f'{working_base_dir}/data/analysis/RQ1'
     file_name = 'subagent_dataset_RQ2'
     undefined_category = subagentCategoriesDao.get_undefined_id()
 
@@ -27,26 +27,25 @@ if __name__ == '__main__' :
     subdf['n_subagents'] = subdf.sum(axis=1)
     count_n_subagents = subdf['n_subagents'].value_counts()
     count_n_subagents.to_csv(f'{file_dir}/dist_repos_by_n_subagents_RQ1.csv')
-    subdf['n_subagents'].mode().to_csv(f'{file_dir}/n_subagents_mode.csv')
+    subdf['n_subagents'].mode().to_csv(f'{file_dir}/n_subagents_mode_RQ1.csv')
     pd.DataFrame({
         'median' : subdf['n_subagents'].median(), 
         'mean' : subdf['n_subagents'].mean()
-    }, index=['median', 'mean']).to_csv(f'{file_dir}/mean_median.csv')
+    }, index=['median', 'mean']).to_csv(f'{file_dir}/mean_median_RQ1.csv')
     
     subdf.to_csv(f'{file_dir}/crosstab_repo_subagents_RQ1.csv')    
 
     plt.figure()
     sns.countplot(subdf, x = 'n_subagents')
-    plt.xlabel('#. Used subagent categories')
-    plt.ylabel('#. Repositories')
+    plt.xlabel('#. Used subagent categories', fontsize = 12)
+    plt.ylabel('#. Repositories', fontsize = 12)
     plt.savefig(f'{file_dir}/dist_repos_by_n_subagents_RQ1.png')
 
-    plt.figure()
-    # sns.countplot(df, x = 'category')
+    plt.figure()    
     sns.barplot(sum_categories)
-    plt.xticks(rotation = 45, ha='right')
-    plt.xlabel('Subagent category')
-    plt.ylabel('#. Repositories')
+    plt.xticks(rotation = 45, ha='right', fontsize = 12)
+    plt.xlabel('Subagent category', fontsize = 12)
+    plt.ylabel('#. Repositories', fontsize = 12)
     plt.tight_layout()
     plt.savefig(f'{file_dir}/dist_repos_by_subagent_categories_RQ1.png')
     

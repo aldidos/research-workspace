@@ -17,14 +17,13 @@ if __name__ == '__main__' :
 
     fig, axs = plt.subplots(2, 1)    
     fig.set_size_inches(16, 10)
-    axs[0].set_title('(a)')
-    axs[0].set_xlabel('#. Contributors')
-
-    axs[1].set_title('(b)')
-    axs[1].set_xlabel('#. Popularity')
+    axs[0].set_title('(a) Contributors', fontsize = 14)
+    axs[1].set_title('(b) Popularity', fontsize = 14)    
     sns.boxplot(df, x = 'contributors', ax = axs[0]) 
     sns.boxplot(df, x = 'stargazers', ax = axs[1])
-    plt.savefig(f'{work_base_dir}/data/analysis/n_contributors_popularity_dist.png')
+    axs[0].set_xlabel("")
+    axs[1].set_xlabel("")
+    plt.savefig(f'{work_base_dir}/data/analysis/dataset_stat/n_contributors_popularity_dist.png')
 
     main_language_counts = df['mainLanguage'].value_counts()
     lang_idx = main_language_counts.sort_values(ascending = False).index
@@ -32,12 +31,13 @@ if __name__ == '__main__' :
 
     plt.figure(figsize = (16, 10))
     sns.countplot(df, x = 'mainLanguage', order = lang_idx)
-    plt.xlabel('Language')
-    plt.ylabel('#. Frequency')
-    plt.savefig(f'{work_base_dir}/data/analysis/main_language_counts.png')
+    plt.xlabel('Language', fontsize = 16)
+    plt.ylabel('#. Frequency', fontsize = 16)
+    plt.xticks(fontsize = 14)
+    plt.savefig(f'{work_base_dir}/data/analysis/dataset_stat/main_language_counts.png')
 
-    contributors_desc.to_csv(f'{work_base_dir}/data/analysis/contributors_desc.csv')
-    stargazers_desc.to_csv(f'{work_base_dir}/data/analysis/stargazers_desc.csv')
-    main_language_counts.to_csv(f'{work_base_dir}/data/analysis/main_language_counts.csv')
+    contributors_desc.to_csv(f'{work_base_dir}/data/analysis/dataset_stat/contributors_desc.csv')
+    stargazers_desc.to_csv(f'{work_base_dir}/data/analysis/dataset_stat/stargazers_desc.csv')
+    main_language_counts.to_csv(f'{work_base_dir}/data/analysis/dataset_stat/main_language_counts.csv')
 
     

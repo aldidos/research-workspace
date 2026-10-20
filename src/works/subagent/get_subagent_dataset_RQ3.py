@@ -11,7 +11,7 @@ load_dotenv()
 
 if __name__ == '__main__' : 
     working_base_dir = os.getenv('SUBAGENT_WORK_BASE_DIR')
-    output_dir = f'{working_base_dir}/data/analysis'
+    output_dir = f'{working_base_dir}/data/analysis/RQ3'
     undefined_category = subagentCategoriesDao.get_undefined_id()
 
     df = pd.DataFrame( subagentDatasetDao.get_dataset_for_RQ3(undefined_category) )     
@@ -40,23 +40,25 @@ if __name__ == '__main__' :
     df_instruction_counts = pd.DataFrame({ 'counts' : instruction_counts}, index = instruction_counts.index)
 
     plt.figure(figsize = (18, 10))    
-    plt.xlabel('Instruction')
-    plt.ylabel('#. Subagents')
+    plt.xlabel('Instruction', fontsize = 14)
+    plt.ylabel('#. Subagents', fontsize = 14)
+    plt.xticks(fontsize = 14)
     plt.tight_layout()
     sns.countplot(df, x = 'ht_category', order = inst_category_freq_suum_index)    
     plt.savefig(f'{output_dir}/inst_dist_RQ3.png')    
 
     plt.figure(figsize = (18, 10))
-    plt.xlabel('#. Instructions')
-    plt.ylabel('#. Subagents')
+    plt.xlabel('#. Instructions', fontsize = 14)
+    plt.ylabel('#. Subagents', fontsize = 14)
+    plt.xticks(fontsize = 14)
     sns.barplot(df_instruction_counts, x = 'n_instructions', y = 'counts')
     plt.savefig(f'{output_dir}/inst_num_dist_RQ3.png')
 
     plt.figure(figsize = (18, 10))
     sns.countplot(df, x = 'subagent_category', hue = 'ht_category')
-    plt.xlabel('Subagent')
-    plt.ylabel('#. Instructions')
-    plt.xticks(rotation = 45, ha='right')    
+    plt.xlabel('Subagent', fontsize = 14)
+    plt.ylabel('#. Instructions', fontsize = 14)
+    plt.xticks(rotation = 45, ha='right', fontsize = 14)    
     plt.tight_layout()
-    plt.legend(title = 'Instruction')
+    plt.legend(title = 'Instruction', fontsize = 14, title_fontsize = 14)
     plt.savefig(f'{output_dir}/inst_dist_by_subagent_category_RQ3.png')

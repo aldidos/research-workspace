@@ -31,7 +31,7 @@ def pvalue_check(row) :
 
 if __name__ == '__main__' : 
     working_dir = os.getenv('SUBAGENT_WORK_BASE_DIR')
-    dir_path = f'{working_dir}/data/analysis/'
+    dir_path = f'{working_dir}/data/analysis/RQ2'
     df = pd.read_csv(f'{dir_path}/study_subagent.temp_mwu_result.csv')
 
     df['res'] = df['res'].transform(transform_res)
